@@ -16,6 +16,7 @@ class CrawlLogo
         ));
 
         $catalog = include __DIR__.'/../bank-list/BankList.php';
+        $base64Filename = __DIR__.'/../bank-logo-base64/LogoList.php';
         $count = 0;
 
         foreach ($catalog as $shortCode => $bankName) {
@@ -25,8 +26,19 @@ class CrawlLogo
             $suffix = 'png';
             $filename = __DIR__."/../bank-logo/{$shortCode}.".$suffix;
             file_put_contents($filename, $image);
+            // base64
+            $content = '<img src="data:image/png;base64,'.base64_encode($image).'">';
+            if (!file_exists($base64Filename)) {
+                file_put_contents($base64Filename, "<?php\rreturn array(\r");
+            } else {
+                $row = "\t"."'".$shortCode."'".' => '."'".$content."',"."\r";
+                file_put_contents($base64Filename,  $row, FILE_APPEND);
+            }
             ++$count;
         }
+
+        // eof
+        file_put_contents($base64Filename,  "\r);", FILE_APPEND);
 
         $endTime = microtime(true);
         $cost = $endTime - $startTime;
