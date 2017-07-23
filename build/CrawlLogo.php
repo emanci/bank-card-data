@@ -27,7 +27,7 @@ class CrawlLogo
             $filename = __DIR__."/../bank-logo/{$shortCode}.".$suffix;
             file_put_contents($filename, $image);
             // base64
-            $content = '<img src="data:image/png;base64,'.base64_encode($image).'">';
+            $content = 'data:image/png;base64,'.base64_encode($image);
             if (!file_exists($base64Filename)) {
                 file_put_contents($base64Filename, "<?php\rreturn array(\r");
             } else {
