@@ -15,8 +15,8 @@ class CrawlLogo
             'timeout' => 300,
         ));
 
-        $catalog = include __DIR__.'/../bank-list/BankList.php';
-        $base64Filename = __DIR__.'/../bank-logo-base64/LogoList.php';
+        $catalog = include __DIR__.'/../bank-list/Banks.php';
+        $base64Filename = __DIR__.'/../bank-logo-base64/Logo.php';
         $count = 0;
 
         foreach ($catalog as $shortCode => $bankName) {

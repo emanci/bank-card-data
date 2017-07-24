@@ -36,7 +36,7 @@ class CrawlBanks
         echo "Crawl down: cost {$cost} seconds.";
 
         // 保存抓取的数据
-        file_put_contents('../bank-list/BankList.php',  "<?php\rreturn ".var_export($bankList, true).';');
+        file_put_contents('../bank-list/Banks.php',  "<?php\rreturn ".var_export($bankList, true).';');
         echo '<br/>Crawl and save done.';
     }
 }
